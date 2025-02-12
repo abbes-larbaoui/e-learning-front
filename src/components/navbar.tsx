@@ -29,9 +29,9 @@ const NAV_MENU = [
     href: "/fields",
   },
   {
-    name: "Docs",
+    name: "Subjects",
     icon: CommandLineIcon,
-    href: "https://www.material-tailwind.com/docs/react/installation",
+    href: "/subjects",
   },
 ];
 

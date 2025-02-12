@@ -1,11 +1,11 @@
 import Navbar from "../components/navbar.tsx";
 import Hero from "../components/hero.tsx";
 import OutImpressiveStats from "../components/out-impressive-stats.tsx";
-import CoursesCategories from "../components/courses-categories.tsx";
 import Footer from "../components/footer.tsx";
 import StudentsFeedback from "../components/students-feedback.tsx";
 import FiledsSection from "../components/fields-section.tsx";
 import PlansSection from "../components/plans-section.tsx";
+import SubjectsSection from "../components/subjects-section.tsx";
 
 export default function HomePage() {
     return (
@@ -14,7 +14,7 @@ export default function HomePage() {
             <Hero />
             <OutImpressiveStats />
             <FiledsSection />
-            <CoursesCategories />
+            <SubjectsSection />
             <PlansSection />
             {/*<ExploreCourses />*/}
             {/*<SubscriptionPlans />*/}

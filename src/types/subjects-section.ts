@@ -1,6 +1,6 @@
 import {SectionSubject} from "./section-subject.ts";
 
-export interface SubjectsSection {
+export interface SubjectsSectionType {
     id: number;
     title: string;
     description: string;

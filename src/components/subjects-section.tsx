@@ -1,43 +1,15 @@
-import {Button, Card, CardBody, Typography,} from "@material-tailwind/react";
-
-import {GlobeEuropeAfricaIcon, HeartIcon, MicrophoneIcon, PuzzlePieceIcon,} from "@heroicons/react/24/solid";
+import {Card, CardBody, Typography,} from "@material-tailwind/react";
 
 import CategoryCard from "./category-card";
 import React, {useEffect, useState} from "react";
-import {SubjectsSection} from "../types/subjects-section.ts";
+import {SubjectsSectionType} from "../types/subjects-section.ts";
 import {fetchSubjectsSection} from "../services/subject-service.ts";
+import {Link} from "react-router-dom";
 
 
-// const CATEGORIES = [
-//   {
-//     img: "/image/blogs/blog-3.png",
-//     icon: HeartIcon,
-//     title: "Frontend Web Development",
-//     desc: "300 Courses",
-//   },
-//   {
-//     img: "/image/blogs/blog-12.jpeg",
-//     icon: PuzzlePieceIcon,
-//     title: "Backend Web Development",
-//     desc: "200 Courses",
-//   },
-//   {
-//     img: "/image/blogs/blog-10.jpeg",
-//     icon: GlobeEuropeAfricaIcon,
-//     title: "Web Security & Performance",
-//     desc: "240 Courses",
-//   },
-//   {
-//     img: "/image/blogs/blog-13.png",
-//     icon: MicrophoneIcon,
-//     title: "Full-Stack Web Development",
-//     desc: "100 Courses",
-//   },
-// ];
+export function SubjectsSection() {
 
-export function CoursesCategories() {
-
-  const [subjectsSectionData, setSubjectsSectionData] = useState<SubjectsSection | null>(null);
+  const [subjectsSectionData, setSubjectsSectionData] = useState<SubjectsSectionType | null>(null);
 
   useEffect(() => {
     fetchSubjectsSection().then((data) => setSubjectsSectionData(data));
@@ -83,9 +55,9 @@ export function CoursesCategories() {
             >
               {subjectsSectionData ? subjectsSectionData.description : "Loading..."}
             </Typography>
-            <Button size="sm" color="white">
-              show all
-            </Button>
+            <Link to="/subjects" className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-300 transition">
+              Show all
+            </Link>
           </CardBody>
         </Card>
       </div>
@@ -93,4 +65,4 @@ export function CoursesCategories() {
   );
 }
 
-export default CoursesCategories;
+export default SubjectsSection;
