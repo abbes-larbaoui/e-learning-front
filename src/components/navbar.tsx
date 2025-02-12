@@ -14,15 +14,19 @@ import {
   XMarkIcon,
   Bars3Icon,
 } from "@heroicons/react/24/solid";
+import {Link} from "react-router-dom";
+import {FolderIcon} from "@heroicons/react/16/solid";
 
 const NAV_MENU = [
   {
-    name: "Page",
+    name: "Plans",
     icon: RectangleStackIcon,
+    href: "/plans",
   },
   {
-    name: "Account",
-    icon: UserCircleIcon,
+    name: "Fields",
+    icon: FolderIcon,
+    href: "/fields",
   },
   {
     name: "Docs",
@@ -39,15 +43,10 @@ interface NavItemProps {
 function NavItem({ children, href }: NavItemProps) {
   return (
     <li>
-      <Typography
-        as="a"
-        href={href || "#"}
-        target={href ? "_blank" : "_self"}
-        variant="paragraph"
-        color="gray"
-        className="flex items-center gap-2 font-medium text-gray-900"
-      >
-        {children}
+      <Typography color="blue-gray" className="flex items-center gap-2 font-medium text-gray-900">
+        <Link to={href || "#"} className="flex items-center hover:text-gray-700 transition">
+          {children}
+        </Link>
       </Typography>
     </li>
   );
@@ -77,7 +76,9 @@ export function Navbar() {
         >
           <div className="flex items-center justify-between">
             <Typography color="blue-gray" className="text-lg font-bold">
-              E-Learning
+              <Link to="/" className="hover:text-gray-700 transition">
+                E-Learning
+              </Link>
             </Typography>
             <ul className="ml-10 hidden items-center gap-8 lg:flex">
               {NAV_MENU.map(({ name, icon: Icon, href }) => (

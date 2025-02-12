@@ -57,38 +57,41 @@ export default function PlansPage() {
     }, [skip, filters]);
 
     return (
-        <div className="relative min-h-screen flex flex-col">
-            <Navbar />
+        <div>
+            <Navbar/>
+            <div className="relative min-h-screen flex flex-col">
 
-            {/* Main Content Wrapper */}
-            <div className="flex-grow flex">
-                {/* Filter Sidebar (Fixed Left) */}
-                <div className="fixed left-0 top-32 w-64 h-full p-4 bg-white">
-                    <PlansFilter onFilterChange={handleFilterChange} />
-                </div>
 
-                {/* Centered Content */}
-                <div className="container mx-auto px-4 py-10 ml-72 flex-grow">
-                    <Typography variant="h2" color="blue-gray" className="mb-6 text-center text-4xl">
-                        Available Plans
-                    </Typography>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 flex-grow">
-                        {plans.length ? (
-                            plans.map((plan, key) => <PlanCard key={key} plan={plan} />)
-                        ) : (
-                            <Typography variant="h6" className="text-center col-span-3 mt-6">
-                                No plans found
-                            </Typography>
-                        )}
+                {/* Main Content Wrapper */}
+                <div className="flex-grow flex">
+                    {/* Filter Sidebar (Fixed Left) */}
+                    <div className="fixed left-0 top-32 w-64 h-full p-4 bg-white">
+                        <PlansFilter onFilterChange={handleFilterChange}/>
                     </div>
 
-                    <Pagination skip={skip} take={TAKE} totalElements={totalElements} setSkip={setSkip} />
-                </div>
-            </div>
+                    {/* Centered Content */}
+                    <div className="container mx-auto px-4 py-10 ml-72 flex-grow">
+                        <Typography variant="h2" color="blue-gray" className="mb-6 text-center text-4xl">
+                            Available Plans
+                        </Typography>
 
-            {/* Footer - Full Width */}
-            <Footer />
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 flex-grow">
+                            {plans.length ? (
+                                plans.map((plan, key) => <PlanCard key={key} plan={plan}/>)
+                            ) : (
+                                <Typography variant="h6" className="text-center col-span-3 mt-6">
+                                    No plans found
+                                </Typography>
+                            )}
+                        </div>
+
+                        <Pagination skip={skip} take={TAKE} totalElements={totalElements} setSkip={setSkip}/>
+                    </div>
+                </div>
+
+                {/* Footer - Full Width */}
+                <Footer/>
+            </div>
         </div>
     );
 

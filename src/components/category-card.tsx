@@ -1,4 +1,4 @@
-import {Card, CardBody, Typography} from "@material-tailwind/react";
+import {Card, CardBody, CardHeader, Typography} from "@material-tailwind/react";
 
 interface CategoryCardProps {
   img: string;
@@ -21,7 +21,7 @@ function CategoryCard({ img, title, desc, field}: CategoryCardProps) {
       <div className="absolute inset-0 h-full w-full bg-black/50" />
       <CardBody className="relative flex flex-col justify-between">
         {/*<Icon className="h-8 w-8 text-white" />*/}
-          <Typography variant="h6" className="mb-1" color="white">
+          <Typography variant="h6" className="mb-6" color="white">
               {field}
           </Typography>
         <div>

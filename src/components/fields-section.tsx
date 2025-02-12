@@ -4,6 +4,7 @@ import CategoryCard from "./category-card";
 import {useEffect, useState} from "react";
 import {FieldsSectionType} from "../types/fields-section.ts";
 import {fetchFieldsSection} from "../services/field-service.ts";
+import {Link} from "react-router-dom";
 
 export function FieldsSection() {
 
@@ -39,9 +40,9 @@ export function FieldsSection() {
             >
               {fieldsSectionData ? fieldsSectionData.description : "Loading..."}
             </Typography>
-            <Button size="sm" color="white">
-              show all
-            </Button>
+            <Link to="/fields" className="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-lg shadow-sm hover:bg-gray-100 transition">
+              Show all
+            </Link>
           </CardBody>
         </Card>
         <div className="grid grid-cols-2 col-span-2 gap-x-6 gap-y-6">

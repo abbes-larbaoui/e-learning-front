@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Button, Input, Option, Select} from "@material-tailwind/react";
+import {Button, Input} from "@material-tailwind/react";
 
 export default function PlansFilter({ onFilterChange }) {
     const [subject, setSubject] = useState("");

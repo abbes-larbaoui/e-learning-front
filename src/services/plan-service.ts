@@ -31,3 +31,13 @@ export const fetchPublicPlans = async (skip, take, filter) => {
     const response = await fetch(`http://localhost:8080/core/api/v1/public/subscription-plans?${params.toString()}`);
     return response.json();
 };
+
+export const fetchPlanDetails = async (id) => {
+    try {
+        const response = await axios.get(`http://localhost:8080/core/api/v1/public/subscription-plans/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching plan details:", error);
+        return null;
+    }
+};
