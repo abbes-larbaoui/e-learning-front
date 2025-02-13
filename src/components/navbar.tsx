@@ -1,10 +1,10 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {
   Navbar as MTNavbar,
   Collapse,
   Button,
   IconButton,
-  Typography,
+  Typography, Menu, MenuHandler, MenuList, MenuItem,
 } from "@material-tailwind/react";
 import {
   RectangleStackIcon,
@@ -15,7 +15,11 @@ import {
   Bars3Icon,
 } from "@heroicons/react/24/solid";
 import {Link} from "react-router-dom";
-import {FolderIcon} from "@heroicons/react/16/solid";
+import {ArrowDownIcon, FolderIcon} from "@heroicons/react/16/solid";
+// import keycloak from "../config/keycloak.ts";
+import {useKeycloak} from "@react-keycloak/web";
+import {BiCaretDown, BiSortDown} from "react-icons/bi";
+import {CgMoveDown} from "react-icons/cg";
 
 const NAV_MENU = [
   {
@@ -66,6 +70,21 @@ export function Navbar() {
     );
   }, []);
 
+  const { keycloak } = useKeycloak();
+  const [isAuthenticated, setIsAuthenticated] = useState(keycloak.authenticated);
+
+  useEffect(() => {
+    const updateAuthState = () => setIsAuthenticated(keycloak.authenticated);
+
+    keycloak.onAuthSuccess = updateAuthState;
+    keycloak.onAuthLogout = updateAuthState;
+    keycloak.onTokenExpired = () => keycloak.updateToken(30).then(updateAuthState);
+
+    if (keycloak.authenticated !== isAuthenticated) {
+      setIsAuthenticated(keycloak.authenticated);
+    }
+  }, [keycloak, isAuthenticated]);
+
   return (
     <div className="px-10 sticky top-4 z-50">
       <div className="mx-auto container">
@@ -89,13 +108,30 @@ export function Navbar() {
               ))}
             </ul>
             <div className="hidden items-center gap-4 lg:flex">
-              <Button variant="text">Log in</Button>
-              <a
-                href="https://www.material-tailwind.com/blocks"
-                target="_blank"
-              >
-                <Button color="gray">Blocks</Button>
-              </a>
+              {isAuthenticated ? (
+                  <Menu>
+                    <MenuHandler>
+                      <button className="text-black flex items-center">
+                        {keycloak.tokenParsed?.preferred_username}  <BiCaretDown />
+                      </button>
+                    </MenuHandler>
+                    <MenuList>
+                      <MenuItem>
+                        <Link to="/dashboard">My Dashboard</Link>
+                      </MenuItem>
+                      <MenuItem onClick={() => keycloak.logout()}>
+                        Logout
+                      </MenuItem>
+                    </MenuList>
+                  </Menu>
+              ) : (
+                  <button
+                      className="px-4 py-2 text-black"
+                      onClick={() => keycloak.login()}
+                  >
+                    Login
+                  </button>
+              )}
             </div>
             <IconButton
               variant="text"
