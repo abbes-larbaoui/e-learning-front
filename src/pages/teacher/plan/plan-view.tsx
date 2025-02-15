@@ -1,12 +1,10 @@
 import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
-import {Container, Typography, CircularProgress, CardContent, Box, Divider, CardActions} from "@mui/material";
+import {Box, CardContent, CircularProgress, Container, Typography} from "@mui/material";
 import {toast, ToastContainer} from "react-toastify";
 import AuthLayout from "../../../components/auth-layout.tsx";
-import {Button, Card, CardHeader} from "@material-tailwind/react";
+import {Card} from "@material-tailwind/react";
 import {fetchPlanById} from "../../../services/plan-service.ts";
-import {AttachMoney, CalendarMonth, Category, Check, Schedule, School} from "@mui/icons-material";
-import {GiMatterStates} from "react-icons/gi";
 
 export default function PlanView() {
     const {id} = useParams(); // Get plan ID from the URL

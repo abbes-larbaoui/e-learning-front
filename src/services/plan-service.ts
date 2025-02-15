@@ -1,5 +1,6 @@
 import axios from "axios";
 import {PlansSectionType} from "../types/plans-section.ts";
+import {useKeycloak} from "@react-keycloak/web";
 
 const API_URL = "http://localhost:8080/core/api/v1/public/active/plans/section";
 
@@ -68,5 +69,19 @@ export const fetchPlanById = async (id: string) => {
     if (!response.ok) {
         throw new Error("Failed to fetch plan");
     }
+    return response.json();
+};
+
+export const createPlan = async (planData, token) => {
+    const response = await fetch("http://localhost:8080/core/api/v1/subscription-plans", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify(planData),
+    });
+
+    if (!response.ok) throw new Error("Failed to create plan");
     return response.json();
 };
