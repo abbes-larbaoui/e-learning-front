@@ -13,11 +13,6 @@ export const fetchPlansSection = async (): Promise<PlansSectionType | null> => {
     }
 };
 
-// export const fetchPublicPlans = async (skip = 0, take = 4) => {
-//     const response = await fetch(`http://localhost:8080/core/api/v1/public/subscription-plans?skip=${skip}&take=${take}`);
-//     return response.json();
-// };
-
 export const fetchPublicPlans = async (skip, take, filter) => {
     const params = new URLSearchParams({
         skip,
@@ -40,4 +35,38 @@ export const fetchPlanDetails = async (id) => {
         console.error("Error fetching plan details:", error);
         return null;
     }
+};
+
+// const API_URL = "http://localhost:8080/core/api/v1/subscription-plans";
+
+export const fetchPlans = async (skip: number, take: number, filterParams: string) => {
+    try {
+        const response = await fetch(`http://localhost:8080/core/api/v1/subscription-plans?skip=${skip}&take=${take}&${filterParams}`);
+        if (!response.ok) throw new Error("Failed to fetch plans");
+
+        return await response.json();
+    } catch (error) {
+        console.error("Error fetching plans:", error);
+        throw error;
+    }
+};
+
+export const deletePlan = async (planId: number) => {
+    try {
+        const response = await fetch(`http://localhost:8080/core/api/v1/subscription-plans/${planId}`, { method: "DELETE" });
+        if (!response.ok) throw new Error("Failed to delete plan");
+
+        return true;
+    } catch (error) {
+        console.error("Error deleting plan:", error);
+        throw error;
+    }
+};
+
+export const fetchPlanById = async (id: string) => {
+    const response = await fetch(`http://localhost:8080/core/api/v1/subscription-plans/${id}`);
+    if (!response.ok) {
+        throw new Error("Failed to fetch plan");
+    }
+    return response.json();
 };

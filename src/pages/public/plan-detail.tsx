@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Typography, Card, CardBody, Button } from "@material-tailwind/react";
-import { fetchPlanDetails } from "../services/plan-service";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
+import { fetchPlanDetails } from "../../services/plan-service.ts";
+import Navbar from "../../components/navbar.tsx";
+import Footer from "../../components/footer.tsx";
 import {UserIcon} from "@heroicons/react/24/solid";
 import {CalendarIcon, ClockIcon, CurrencyDollarIcon} from "@heroicons/react/24/outline";
 import {ClipboardDocumentListIcon, UsersIcon} from "@heroicons/react/16/solid";

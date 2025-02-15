@@ -1,11 +1,11 @@
 import {useState, useEffect} from "react";
 import {Typography} from "@material-tailwind/react";
-import Navbar from "../components/navbar.tsx";
-import Footer from "../components/footer.tsx";
-import PlanCard from "../components/plan-card.tsx";
-import Pagination from "../components/pagination.tsx";
-import {fetchPublicPlans} from "../services/plan-service.ts";
-import PlansFilter from "../components/plans-filter.tsx";
+import Navbar from "../../components/navbar.tsx";
+import Footer from "../../components/footer.tsx";
+import PlanCard from "../../components/plan-card.tsx";
+import Pagination from "../../components/pagination.tsx";
+import {fetchPublicPlans} from "../../services/plan-service.ts";
+import PlansFilter from "../../components/plans-filter.tsx";
 
 export default function PlansPage() {
     const [plans, setPlans] = useState([]);
